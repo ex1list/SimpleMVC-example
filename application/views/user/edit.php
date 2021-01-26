@@ -21,6 +21,8 @@ $User = Config::getObject('core.user.class');
     <input type="text" name="login" placeholder="логин пользователя" value="<?= $viewAdminusers->login ?>"><br>
     <h5>Введите пароль</h5>
     <input type="text" name="pass" placeholder="новый пароль" value=""><br>
+    <h5>Введите роль</h5>
+    <input type="text" name="role" placeholder="роль пользователя" value="<?= $viewAdminusers->role ?>"><br>
     <h5>Введите e-mail</h5>
     <input type="text" name="email"  placeholder="email" value="<?= $viewAdminusers->email ?>"><br>
     
