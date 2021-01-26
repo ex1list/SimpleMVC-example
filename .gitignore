@@ -10,4 +10,4 @@
 !/web/assets/.gitkeep
 
 #игнорируем локальные конфигурационные файлы
-/application/config/*-local.php
+/application/config/web-local-example.php
