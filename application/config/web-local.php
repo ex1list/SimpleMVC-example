@@ -13,9 +13,9 @@
 $config = [
     'core' => [ // подмассив используемый самим ядром фреймворка
         'db' => [ // подмассив конфигурации БД
-            'dns' => 'mysql:host=localhost;dbname=mvc',
+            'dns' => 'mysql:host=localhost;dbname=smvcbase',
             'username' => 'root',
-            'password' => ''
+            'password' => '12345'
         ]
     ]    
 ];

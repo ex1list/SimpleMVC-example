@@ -26,7 +26,9 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function loginAction()
     {
+       
         if (!empty($_POST)) {
+             
             $login = $_POST['userName'];
             $pass = $_POST['password'];
             $User = Config::getObject('core.user.class');

@@ -15,6 +15,9 @@ $config = [
         'url' => [ 
             'class' => \ItForFree\SimpleMVC\Url::class
         ],
+        'articles' => [ 
+            'class' => \application\models\ExampleArticle::class
+        ],
         'mvc' => [
             'views' => [
                 'base-template-path' => '../application/views/',

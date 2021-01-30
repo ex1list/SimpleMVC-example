@@ -39,7 +39,7 @@ $User = Config::getObject('core.user.class');
         <?php endif; ?>
         
         <li class="nav-item ">
-            <a class="nav-link">Edit Articles</a> 
+            <a class="nav-link" href="<?= Url::link("admin/adminarticles/index") ?>">Edit Articles</a> 
         </li>
         
          <?php  if ($User->isAllowed("admin/adminusers/index")): ?> 

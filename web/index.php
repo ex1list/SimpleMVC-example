@@ -8,8 +8,9 @@ $config = ItForFree\rusphp\PHP\ArrayLib\Merger::mergeRecursivelyWithReplace(
     require(__DIR__ . '/../application/config/web.php'), 
     $localConfig);
 // var_dump ($localConfig); die();
-
-
 \ItForFree\SimpleMVC\Application::get()
     ->setConfiguration($config)
     ->run();
+
+
+ 
