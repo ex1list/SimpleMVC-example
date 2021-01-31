@@ -10,27 +10,21 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     
     public $layoutPath = 'admin-main.php';
+   
     
-    protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-         ['allow' => true, 'roles' => ['admin']],
-         ['allow' => false, 'roles' => ['?', '@']],
-    ];
     
     public function indexAction()
     {
         $Adminarticles = new Adminarticles();
-        //var_dump($Adminarticles); die();
-        $userId = $_GET['id'] ?? null;
-        
-        if ($userId) { // если указан конктреный пользователь
-            $viewAdminusers = $Adminusers->getById($_GET['id']);
-            $this->view->addVar('viewAdminusers', $viewAdminusers);
-            $this->view->render('user/view-item.php');
-        } else { // выводим полный список 
-            $articles = $Adminarticles->getList()['results'];
+      // var_dump($Adminarticles); die();
+         $articles= $Adminarticles->getList()['results'];
+         
+        //var_dump( $articles); die();
+ 
+           
             $this->view->addVar('articles', $articles);
             $this->view->render('articles/index.php');
-        }
+   
     }
 
     /**

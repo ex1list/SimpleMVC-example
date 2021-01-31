@@ -23,7 +23,7 @@ class Adminarticles extends BaseExampleModel
      * Логин пользователя
      * @var type 
      */
-    public $publicationdate = null;
+    public $publicationDate = null;
     
     /**
      * Логин пользователя

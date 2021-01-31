@@ -1,15 +1,15 @@
 <?php 
 use ItForFree\SimpleMVC\Config;
 
-$articles = Config::getObject('core.articles.class');
-var_dump($articles);die();
+$Articles_get = Config::getObject('core.articles.class');
+//var_dump($articles);die();
 ?>
 
 <?php include('includes/admin-users-nav.php'); ?>
 
 <h2>Список статей</h2> 
     
-<?php if (!empty($users)): ?>
+<?php    if (!empty($articles)): ?>
 <table class="table">
     <thead>
     <tr>
@@ -25,22 +25,23 @@ var_dump($articles);die();
     </tr>
      </thead>
     <tbody>
-    <?php foreach($users as $user): ?>
+    <?php foreach($articles as $aricle): ?>
     <tr>
-        <td> <?= $user->id ?> </td>
-        <td> <?= $user->login ?> </td>
-        <td>  <?= $user->email ?> </td>
-        <td>  <?= $user->timestamp ?> </td>
-        <td> <?= $user->id ?> </td>
-        <td> <?= $user->login ?> </td>
-        <td>  <?= $user->email ?> </td>
-        <td>  <?= $user->timestamp ?> </td>     
+        <td> <?=  $aricle->id ?> </td>
+        <td> <?=  $aricle->publicationDate ?> </td>
+        <td> <?=  $aricle->categoryId ?> </td>
+        <td> <?=  $aricle->title ?> </td>
+        <td> <?=  $aricle->summary ?> </td>
+        <td> <?=  $aricle->content ?> </td>
+        <td> <?=  $aricle->Active ?> </td>
+        <td> <?=  $aricle->SubcategoryId ?> </td>
+    
         
         
         <td>  <?= $User->returnIfAllowed("admin/adminusers/edit", 
                     "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/edit&id=". $user->id) 
                     . ">[Редактировать]</a>");?></td>
-    </tr>
+       </tr>
     <?php endforeach; ?>
     
     </tbody>

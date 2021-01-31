@@ -2,6 +2,7 @@
 use ItForFree\SimpleMVC\Config;
 
 $User = Config::getObject('core.user.class');
+ 
 ?>
 <?php include('includes/admin-users-nav.php'); ?>
 
