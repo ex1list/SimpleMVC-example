@@ -76,7 +76,7 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
             $Adminusers = new Adminusers();
             $viewAdminusers = $Adminusers->getById($id);
             
-            $editAdminusersTitle = "Редактирование данных пользователя";
+            $editAdminArticleTitle = "Редактирование данных cтатьи";
             
             $this->view->addVar('viewAdminusers', $viewAdminusers);
             $this->view->addVar('editAdminusersTitle', $editAdminusersTitle);

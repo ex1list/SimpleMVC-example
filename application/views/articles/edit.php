@@ -2,12 +2,12 @@
 use ItForFree\SimpleMVC\Config;
 
 $Url = Config::getObject('core.url.class');
-$User = Config::getObject('core.user.class');
+$Articles_w = Config::getObject('core.articles.class');
 ?>
 
 <?php include('includes/admin-users-nav.php'); ?>
 
-<h2><?= $editAdminusersTitle ?>
+<h2><?= $editAdminArticleTitle ?>
     <span>
         <?= $User->returnIfAllowed("admin/adminusers/delete", 
             "<a href=" . $Url::link("admin/adminusers/delete&id=" . $_GET['id']) 
