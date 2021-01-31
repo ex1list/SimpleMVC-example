@@ -39,7 +39,7 @@ $Articles_get = Config::getObject('core.articles.class');
         
         
         <td>  <?= $User->returnIfAllowed("admin/adminusers/edit", 
-                    "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/edit&id=". $user->id) 
+                    "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminarticles/edit&id=". $aricle->id) 
                     . ">[Редактировать]</a>");?></td>
        </tr>
     <?php endforeach; ?>

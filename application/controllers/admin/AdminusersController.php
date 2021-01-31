@@ -66,7 +66,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     {
         $id = $_GET['id'];
         $Url = Config::get('core.url.class');
-        
+        // var_dump($_POST);die();
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {

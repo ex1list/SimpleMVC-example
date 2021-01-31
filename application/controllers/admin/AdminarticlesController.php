@@ -57,9 +57,11 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function editAction()
     {
+        //var_dump( $_GET['id']);die();
         $id = $_GET['id'];
+    
         $Url = Config::get('core.url.class');
-        
+        //var_dump($_POST); die();
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
@@ -73,15 +75,18 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
             }
         }
         else {
-            $Adminusers = new Adminusers();
-            $viewAdminusers = $Adminusers->getById($id);
-            
+            $Adminarticles = new Adminarticles();
+            $viewAdminarticles = $Adminarticles->getById($id);
+            //var_dump($viewAdminarticles); die();
+             
             $editAdminArticleTitle = "Редактирование данных cтатьи";
             
-            $this->view->addVar('viewAdminusers', $viewAdminusers);
-            $this->view->addVar('editAdminusersTitle', $editAdminusersTitle);
-            
-            $this->view->render('user/edit.php');   
+             
+           
+            $this->view->addVar('viewAdminarticles', $viewAdminarticles);
+            $this->view->addVar('editAdminArticleTitle', $editAdminArticleTitle);
+      
+            $this->view->render('articles/edit.php');   
         }
         
     }
