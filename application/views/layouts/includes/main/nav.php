@@ -26,12 +26,22 @@ $User = Config::getObject('core.user.class');
             <a class="nav-link" href="<?= Url::link("login/login") ?>">[Вход]</a>
         </li>
         <?php endif; ?>
-        
+             <?php  if ($User->isAllowed("login/login")): ?>
+        <li class="nav-item ">
+            <a class="nav-link" href="<?= Url::link("login/login") ?>">Показать все статьи</a>
+        </li>
+        <?php endif; ?>
  
         
          <?php  if ($User->isAllowed("admin/adminusers/index")): ?> 
         <li class="nav-item ">
-           <a class="nav-link"> Categories  </a> 
+           <a class="nav-link" href="<?= Url::link("admin/adminarticles/index") ?>"> Edit articles </a> 
+        </li>
+        <?php endif; ?>
+        
+         <?php  if ($User->isAllowed("admin/adminusers/index")): ?> 
+        <li class="nav-item ">
+           <a class="nav-link" href="<?= Url::link("admin/admincategories/index") ?>" >  Categories  </a> 
         </li>
         <?php endif; ?>
          
@@ -43,7 +53,7 @@ $User = Config::getObject('core.user.class');
         
         <?php  if ($User->isAllowed("admin/adminusers/index")): ?> 
             <li class="nav-item ">
-                <a class="nav-link"> 
+                <a class="nav-link" href="<?= Url::link("admin/adminsubcategories/index") ?>" > 
                     SubCategories  
                 </a> 
             </li>
