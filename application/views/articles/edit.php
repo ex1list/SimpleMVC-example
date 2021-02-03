@@ -2,7 +2,7 @@
 use ItForFree\SimpleMVC\Config;
 
 $Url = Config::getObject('core.url.class');
-// var_dump($viewAdminarticles); die();
+ // var_dump($editAdminСategoryTitle); die();
  
 ?>
 

@@ -17,8 +17,8 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
     {
         $Adminsubcategories = new Adminsubcategories();
         // var_dump($Adminarticles); die();
-        $subcategories= $Adminsubcategories->getList()['results'];
-        //var_dump( $articles); die();
+        $subcategories = $Adminsubcategories->getList()['results'];
+         //var_dump( $subcategories); die();
         $this->view->addVar('subcategories', $subcategories);
         $this->view->render('subcategories/index.php');
     }
@@ -61,7 +61,7 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
-                $Adminusers = new Adminusers();
+                $Adminusers = new Adminsubcategories();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
                 $this->redirect($Url::link("admin/adminusers/index&id=$id"));
@@ -71,18 +71,18 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
             }
         }
         else {
-            $Adminarticles = new Adminarticles();
-            $viewAdminarticles = $Adminarticles->getById($id);
+            $Adminsubcategories = new Adminsubcategories();
+            $viewAdminsubcategories = $Adminsubcategories->getById($id);
             //var_dump($viewAdminarticles); die();
              
-            $editAdminArticleTitle = "Редактирование данных cтатьи";
+            $editAdminSubcategoryTitle = "Редактирование данных субкатегории";
             
              
            
-            $this->view->addVar('viewAdminarticles', $viewAdminarticles);
-            $this->view->addVar('editAdminArticleTitle', $editAdminArticleTitle);
+            $this->view->addVar('viewAdminsubcategories', $viewAdminsubcategories);
+            $this->view->addVar('editAdminSubcategoryTitle', $editAdminSubcategoryTitle);
       
-            $this->view->render('articles/edit.php');   
+            $this->view->render('subcategories/edit.php');   
         }
         
     }
@@ -100,7 +100,6 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->delete();
-                
                 $this->redirect($Url::link("archive/allUsers"));
               
             }

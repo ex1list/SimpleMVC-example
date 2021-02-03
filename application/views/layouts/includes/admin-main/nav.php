@@ -44,7 +44,7 @@ $User = Config::getObject('core.user.class');
         
          <?php  if ($User->isAllowed("admin/adminusers/index")): ?> 
         <li class="nav-item ">
-           <a class="nav-link" href="<?= Url::link("admin/adminarticles/index") ?>" > Categories  </a> 
+           <a class="nav-link" href="<?= Url::link("admin/admincategories/index") ?>" > Categories  </a> 
         </li>
         <?php endif; ?>
          
@@ -56,7 +56,7 @@ $User = Config::getObject('core.user.class');
         
          <?php  if ($User->isAllowed("admin/adminusers/index")): ?> 
         <li class="nav-item ">
-        <a class="nav-link" href="<?= Url::link("admin/adminarticles/index") ?>"> 
+        <a class="nav-link" href="<?= Url::link("admin/adminsubcategories/index") ?>"> 
             SubCategories  
         </a> 
 

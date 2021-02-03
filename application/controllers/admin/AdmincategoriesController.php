@@ -20,7 +20,7 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
          $categories= $Admincategories->getList()['results'];
          
         //var_dump( $articles); die();
- 
+            
            
             $this->view->addVar('categories', $categories);
             $this->view->render('categories/index.php');
@@ -57,7 +57,7 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function editAction()
     {
-        //var_dump( $_GET['id']);die();
+        // var_dump( $_GET['id']);die();
         $id = $_GET['id'];
     
         $Url = Config::get('core.url.class');
@@ -68,25 +68,25 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
-                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
+                $this->redirect($Url::link("admin/categories/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
+                $this->redirect($Url::link("admin/categories/index&id=$id"));
             }
         }
         else {
-            $Adminarticles = new Adminarticles();
-            $viewAdminarticles = $Adminarticles->getById($id);
+            $Admincategories = new Admincategories();
+            $viewAdmincategory = $Admincategories->getById($id);
             //var_dump($viewAdminarticles); die();
              
-            $editAdminArticleTitle = "Редактирование данных cтатьи";
+            $editAdminСategoryTitle = "Редактирование данных категории";
             
              
            
-            $this->view->addVar('viewAdminarticles', $viewAdminarticles);
-            $this->view->addVar('editAdminArticleTitle', $editAdminArticleTitle);
+            $this->view->addVar('viewAdmincategory', $viewAdmincategory);
+            $this->view->addVar('editAdminСategoryTitle', $editAdminСategoryTitle);
       
-            $this->view->render('articles/edit.php');   
+            $this->view->render('categories/edit.php');   
         }
         
     }

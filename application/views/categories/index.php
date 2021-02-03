@@ -2,7 +2,7 @@
 use ItForFree\SimpleMVC\Config;
 
 $Articles_get = Config::getObject('core.articles.class');
-//var_dump($categories);die();
+//var_dump($Adminsubcategories);die();
 ?>
 
 <?php include('includes/admin-users-nav.php'); ?>
@@ -24,8 +24,7 @@ $Articles_get = Config::getObject('core.articles.class');
     <tr>
         <td> <?=  $category->id ?> </td>
         <td> <?=  $category->name?> </td>
-        <td> <?=  $category->description ?> </td>   
-        
+        <td> <?=  $category->description ?> </td>          
         <td>  <?= $User->returnIfAllowed("admin/admincategories/edit", 
                     "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/admincategories/edit&id=". $category->id) 
                     . ">[Редактировать]</a>");?></td>
@@ -34,7 +33,6 @@ $Articles_get = Config::getObject('core.articles.class');
     
     </tbody>
 </table>
-
 <?php else:?>
     <p> Список категорий пуст. </p>
 <?php endif; ?>

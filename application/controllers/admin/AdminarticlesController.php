@@ -78,14 +78,10 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
             $Adminarticles = new Adminarticles();
             $viewAdminarticles = $Adminarticles->getById($id);
             //var_dump($viewAdminarticles); die();
-             
-            $editAdminArticleTitle = "Редактирование данных cтатьи";
             
-             
-           
+            $editAdminArticleTitle = "Редактирование данных cтатьи";      
             $this->view->addVar('viewAdminarticles', $viewAdminarticles);
             $this->view->addVar('editAdminArticleTitle', $editAdminArticleTitle);
-      
             $this->view->render('articles/edit.php');   
         }
         
