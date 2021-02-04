@@ -10,8 +10,8 @@ $Url = Config::getObject('core.url.class');
 
 <h2><?= $editAdminArticleTitle ?>
     <span>
-        <?= $User->returnIfAllowed("admin/adminusers/delete", 
-            "<a href=" . $Url::link("admin/adminusers/delete&id=" . $_GET['id']) 
+        <?= $User->returnIfAllowed("admin/admincategories/delete", 
+            "<a href=" . $Url::link("admin/admincategories/delete&id=" . $_GET['id']) 
             . ">[Удалить]</a>");?>
     </span>
 </h2>

@@ -60,18 +60,19 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         // var_dump( $_GET['id']);die();
         $id = $_GET['id'];
     
-        $Url = Config::get('core.url.class');
+         $Url = Config::get('core.url.class');
         //var_dump($_POST); die();
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
-                $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromArray($_POST);
-                $newAdminusers->update();
-                $this->redirect($Url::link("admin/categories/index&id=$id"));
+                $Admincategories = new Admincategories();
+                $newAdmincategories = $Admincategories->loadFromArray($_POST);
+                //var_dump($newAdmincategories); die();
+                $newAdmincategories->update();
+                $this->redirect($Url::link("admin/admincategories/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->redirect($Url::link("admin/categories/index&id=$id"));
+                $this->redirect($Url::link("admin/admincategories/index&id=$id"));
             }
         }
         else {
@@ -101,9 +102,9 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         
         if (!empty($_POST)) {
             if (!empty($_POST['deleteUser'])) {
-                $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromArray($_POST);
-                $newAdminusers->delete();
+                $Admincategories = new Admincategories();
+                $newAdmincategories = $Admincategories->loadFromArray($_POST);
+                $newAdmincategories->delete();
                 
                 $this->redirect($Url::link("archive/allUsers"));
               
@@ -114,14 +115,14 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         }
         else {
             
-            $Adminusers = new Adminusers();
-            $deletedAdminusers = $Adminusers->getById($id);
-            $deleteAdminusersTitle = "Удаление статьи";
+            $Admincategories = new Admincategories();
+            $deletedAdmincategories = $Admincategories->getById($id);
+            $deleteAdmincategoriesTitle = "Удаление категории";
             
-            $this->view->addVar('deleteAdminusersTitle', $deleteAdminusersTitle);
-            $this->view->addVar('deletedAdminusers', $deletedAdminusers);
+            $this->view->addVar('deleteAdmincategoriesTitle', $deleteAdmincategoriesTitle);
+            $this->view->addVar('deletedAdmincategories', $deletedAdmincategories);
             
-            $this->view->render('user/delete.php');
+            $this->view->render('categories/delete.php');
         }
     }
 }

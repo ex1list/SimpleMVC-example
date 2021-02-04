@@ -55,7 +55,7 @@ class Admincategories extends BaseExampleModel
     */
     public function update()
     {       
-        $sql = "UPDATE $this->tableName SET name=:name, description=:description,  WHERE id = :id";  
+        $sql = "UPDATE $this->tableName SET name=:name, description=:description  WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":name", $this->name, \PDO::PARAM_STMT);
         $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
@@ -64,3 +64,5 @@ class Admincategories extends BaseExampleModel
     }
     
 }
+
+ 
