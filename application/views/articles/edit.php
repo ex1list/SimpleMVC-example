@@ -19,30 +19,54 @@ $Url = Config::getObject('core.url.class');
 <form id="editUser" method="post" action="<?= $Url::link("admin/adminusers/edit&id=" . $_GET['id'])?>">
     <h5>Введите название статьи</h5>
     <input type="text" name="login" placeholder="логин пользователя" value="<?= $viewAdminarticles->title ?>"><br>
-    <h5>Publication date</h5>
-    <input  type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $viewAdminarticles->publicationDate ?  $viewAdminarticles->publicationDate : "" ?>"><br>
-    <h5>Article summary</h5>
+ <h5>Article summary</h5>
     <input type="text" name="pass" placeholder="новый пароль" value="<?= $viewAdminarticles->summary?>"><br>
     <h5>Article content</h5>
     <input type="textarea" name="pass" placeholder="новый пароль" value="<?= $viewAdminarticles->content ?>"><br>
-    <h5>Article active</h5>
+    
+                    <label for="categoryId">Article Category</label>
+                <select name="categoryId">
+                  <option value="0"<?php echo !$results['article']->categoryId ? " selected" : ""?>>(none)</option>
+                <?php foreach ( $results['categories'] as $category ) { ?>
+                  <option value="<?php echo $category->id?>"<?php echo ( $category->id == $results['article']->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
+                <?php } ?>
+                </select>
+    
+    
+    <div class="form-group">   
+       <label for="SubcategoryId">Article SubCategory</label>
+                <select name="SubcategoryId"> 
+                <?php foreach ($results['categories'] as $category ) {  ?>
+                  <optgroup label="<?php echo htmlspecialchars($category->name) ?>">
+                    <?php foreach ($results['subcategories'] as $subcategory ) {  
+                      if ($category->id == $subcategory->category_id) {
+                    ?>
+                      <option value="<?php echo $subcategory->id?>"
+                        <?php echo ( $subcategory->id == $results['article']->SubcategoryId ) 
+                        ? " selected" : ""?>>
+                        <?php echo htmlspecialchars( $subcategory->Subname )?> 
+                      </option>
+                      <?php }
+                    }   ?>   
+                  </optgroup> 
+               <?php }     ?>  
+                </select>
+      
+    </div>
+    <div class="form-group">   
+        <label for="Author">Author</label>
+            <select name="groups[]" multiple="" size="10" >
+                <?php  foreach ($users as $user)  { ?>
+                <option value="<?php echo $user->id?>"><?php echo htmlspecialchars( $user->login)?></option>
+
+        <?php } ?>
+          </select>
+ 
+    </div>
+        <h5>Publication date</h5>
+    <input  type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $viewAdminarticles->publicationDate ?  $viewAdminarticles->publicationDate : "" ?>"><br>
+     <h5>Article active</h5>
     <input type="checkbox" name="pass" placeholder="новый пароль" value="1"><br>
-    <div class="form-group">   
-        <label for="role">Article  category</label>
-            <select name="role" id="role" class="form-control" value="<?= $viewAdminusers->role ?>"> 
-                <option value="<?= $viewAdminarticles->title ?>">Администратор</option>
-                <option value="<?= $viewAdminarticles->title ?>">Зарегистрированный пользователь</option>
-            </select>
-    </div>
-    
-    <div class="form-group">   
-        <label for="role">Article subcategory</label>
-            <select name="role" id="role" class="form-control" value="<?= $viewAdminarticles->title ?>"> 
-                <option value="<?= $viewAdminarticles->title ?>">Администратор</option>
-                <option value="<?= $viewAdminarticles->title ?>">Зарегистрированный пользователь</option>
-            </select>
-    </div>
-    
     
     <input type="hidden" name="id" value="<?= $_GET['id']; ?>">
     <input type="submit" name="saveChanges" value="Сохранить">
