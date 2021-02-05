@@ -60,7 +60,7 @@ class Adminsubcategories extends BaseExampleModel
     */
     public function update()
     {       
-        $sql = "UPDATE $this->tableName SET category_id=:category_id, Subname=:Subname, Subdescription=:Subdescription,  WHERE id = :id";  
+        $sql = "UPDATE $this->tableName SET category_id=:category_id, Subname=:Subname, Subdescription=:Subdescription  WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":category_id", $this->category_id, \PDO::PARAM_STMT);
         $st->bindValue( ":Subname", $this->Subname, \PDO::PARAM_STR );

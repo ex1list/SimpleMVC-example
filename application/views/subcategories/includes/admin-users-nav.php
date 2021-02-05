@@ -10,15 +10,15 @@ $User = Config::getObject('core.user.class');
 
 <ul class="nav">
     
-    <?php  if ($User->isAllowed("admin/adminusers/index")): ?>
+    <?php  if ($User->isAllowed("admin/adminsubcategories/index")): ?>
     <li class="nav-item ">
-        <a class="nav-link" href="<?= Url::link("admin/adminusers/index") ?>">Список</a>
+        <a class="nav-link" href="<?= Url::link("admin/adminsubcategories/index") ?>">Список</a>
     </li>
     <?php endif; ?>
     
-    <?php  if ($User->isAllowed("admin/adminusers/add")): ?>
+    <?php  if ($User->isAllowed("admin/adminsubcategories/add")): ?>
     <li class="nav-item ">
-        <a class="nav-link" href="<?= Url::link("admin/adminusers/add") ?>"> + Добавить пользователя</a>
+        <a class="nav-link" href="<?= Url::link("admin/adminsubcategories/add") ?>"> + Добавить субкатегорию</a>
     </li>
     <?php endif; ?>  
 </ul>

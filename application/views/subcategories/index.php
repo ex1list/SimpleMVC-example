@@ -2,12 +2,13 @@
 use ItForFree\SimpleMVC\Config;
 
 $Articles_get = Config::getObject('core.articles.class');
+
  //var_dump($subcategories);die();
 ?>
 
 <?php include('includes/admin-users-nav.php'); ?>
 
-<h2>Список статей</h2> 
+<h2>Список субкатегорий</h2> 
     
 <?php    if (!empty($subcategories)): ?>
 <table class="table">
@@ -25,7 +26,7 @@ $Articles_get = Config::getObject('core.articles.class');
         <td> <?=  $subcategory->id ?> </td>
         <td> <?=  $subcategory->Subname ?> </td>
         <td> <?=  $subcategory->Subdescription ?> </td>
-
+      
     
         
         

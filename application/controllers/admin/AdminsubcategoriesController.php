@@ -1,6 +1,7 @@
 <?php
 namespace application\controllers\admin;
 use \application\models\Adminsubcategories as Adminsubcategories;
+use \application\models\Admincategories as Admincategories;
 use ItForFree\SimpleMVC\Config;
 
 /**
@@ -31,20 +32,20 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         $Url = Config::get('core.url.class');
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
-                $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromArray($_POST);
-                $newAdminusers->insert(); 
-                $this->redirect($Url::link("admin/adminusers/index"));
+                $Adminsubcategories = new Adminsubcategories();
+                $newAdminsubcategories = $Adminsubcategories->loadFromArray($_POST);
+                $newAdminsubcategories->insert(); 
+                $this->redirect($Url::link("admin/adminsubcategories/index"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->redirect($Url::link("admin/adminusers/index"));
+                $this->redirect($Url::link("admin/adminsubcategories/index"));
             }
         }
         else {
-            $addAdminusersTitle = "Регистрация пользователя";
-            $this->view->addVar('addAdminusersTitle', $addAdminusersTitle);
+            $addAdminsubcategoriesTitle = "Добавить субкатегорию";
+            $this->view->addVar('addAdminsubcategoriesTitle', $addAdminsubcategoriesTitle);
             
-            $this->view->render('user/add.php');
+            $this->view->render('subcategories/add.php');
         }
     }
     
@@ -57,17 +58,17 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         $id = $_GET['id'];
     
         $Url = Config::get('core.url.class');
-        //var_dump($_POST); die();
+         //var_dump($_POST); die();
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
-                $Adminusers = new Adminsubcategories();
-                $newAdminusers = $Adminusers->loadFromArray($_POST);
-                $newAdminusers->update();
-                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
+                $Adminsubcategories = new Adminsubcategories();
+                $newAdminsubcategories = $Adminsubcategories->loadFromArray($_POST);
+                $newAdminsubcategories->update();
+                $this->redirect($Url::link("admin/adminsubcategories/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
+                $this->redirect($Url::link("admin/adminsubcategories/index&id=$id"));
             }
         }
         else {
@@ -76,12 +77,12 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
             //var_dump($viewAdminarticles); die();
              
             $editAdminSubcategoryTitle = "Редактирование данных субкатегории";
-            
-             
+             $Admincategories = new Admincategories();
+             $categories= $Admincategories->getList()['results'];
            
             $this->view->addVar('viewAdminsubcategories', $viewAdminsubcategories);
             $this->view->addVar('editAdminSubcategoryTitle', $editAdminSubcategoryTitle);
-      
+            $this->view->addVar('categories', $categories);
             $this->view->render('subcategories/edit.php');   
         }
         
@@ -97,26 +98,24 @@ class AdminsubcategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         
         if (!empty($_POST)) {
             if (!empty($_POST['deleteUser'])) {
-                $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromArray($_POST);
-                $newAdminusers->delete();
-                $this->redirect($Url::link("archive/allUsers"));
+                $Adminsubcategories = new Adminsubcategories();
+                $newAdminsubcategories = $Adminsubcategories->loadFromArray($_POST);
+                $newAdminsubcategories->delete();
+                $this->redirect($Url::link("admin/adminsubcategories/index"));
               
             }
             elseif (!empty($_POST['cancel'])) {
-                $this->redirect($Url::link("admin/adminusers/edit&id=$id"));
+                $this->redirect($Url::link("admin/adminsubcategories/edit&id=$id"));
             }
         }
         else {
             
-            $Adminusers = new Adminusers();
-            $deletedAdminusers = $Adminusers->getById($id);
-            $deleteAdminusersTitle = "Удаление статьи";
-            
-            $this->view->addVar('deleteAdminusersTitle', $deleteAdminusersTitle);
-            $this->view->addVar('deletedAdminusers', $deletedAdminusers);
-            
-            $this->view->render('user/delete.php');
+            $Adminsubcategories = new Adminsubcategories();
+            $deletedAdminsubcategories = $Adminsubcategories->getById($id);
+            $deleteAdminsubcategoriesTitle = "Удаление cубкатегории";       
+            $this->view->addVar('deleteAdminsubcategoriesTitle', $deleteAdminsubcategoriesTitle);
+            $this->view->addVar('deletedAdminsubcategories', $deletedAdminsubcategories);  
+            $this->view->render('subcategories/delete.php');
         }
     }
 }

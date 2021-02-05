@@ -40,6 +40,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     public function addAction()
     {
         $Url = Config::get('core.url.class');
+        //var_dump($_POST); die();
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
                 $Adminusers = new Adminusers();
@@ -102,6 +103,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
         $Url = Config::get('core.url.class');
         
         if (!empty($_POST)) {
+            //var_dump($_POST);die();
             if (!empty($_POST['deleteUser'])) {
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);

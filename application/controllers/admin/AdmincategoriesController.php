@@ -35,20 +35,20 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
         $Url = Config::get('core.url.class');
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
-                $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromArray($_POST);
-                $newAdminusers->insert(); 
-                $this->redirect($Url::link("admin/adminusers/index"));
+                $Admincategories = new Admincategories();
+                $newAdmincategories = $Admincategories->loadFromArray($_POST);
+                $newAdmincategories->insert(); 
+                $this->redirect($Url::link("admin/admincategories/index"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->redirect($Url::link("admin/adminusers/index"));
+                $this->redirect($Url::link("admin/admincategories/index"));
             }
         }
         else {
-            $addAdminusersTitle = "Регистрация пользователя";
-            $this->view->addVar('addAdminusersTitle', $addAdminusersTitle);
+            $addnewAdmincategoriesTitle = "Добавление новой категории";
+            $this->view->addVar('addnewAdmincategoriesTitle', $addnewAdmincategoriesTitle);
             
-            $this->view->render('user/add.php');
+            $this->view->render('categories/add.php');
         }
     }
     
@@ -97,16 +97,18 @@ class AdmincategoriesController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function deleteAction()
     {
+        //var_dump($_GET); die();
         $id = $_GET['id'];
         $Url = Config::get('core.url.class');
         
         if (!empty($_POST)) {
             if (!empty($_POST['deleteUser'])) {
+                //var_dump($_POST);die();
                 $Admincategories = new Admincategories();
                 $newAdmincategories = $Admincategories->loadFromArray($_POST);
                 $newAdmincategories->delete();
                 
-                $this->redirect($Url::link("archive/allUsers"));
+                $this->redirect($Url::link("admin/admincategories/index"));
               
             }
             elseif (!empty($_POST['cancel'])) {
