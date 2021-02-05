@@ -2,9 +2,9 @@
 use ItForFree\SimpleMVC\Config;
 
 $Articles_get = Config::getObject('core.articles.class');
-//var_dump($articles);die();
-?>
-
+//categories subcategories
+?> 
+ 
 <?php include('includes/admin-users-nav.php'); ?>
 
 <h2>Список статей</h2> 
@@ -16,6 +16,7 @@ $Articles_get = Config::getObject('core.articles.class');
       <th scope="col">id</th>
       <th scope="col">Дата публикации</th>
       <th scope="col">categoryId</th>
+      <th scope="col">subcategory</th>
       <th scope="col">title</th>
       <th scope="col">summary</th>
       <th scope="col">content</th>
@@ -25,21 +26,44 @@ $Articles_get = Config::getObject('core.articles.class');
     </tr>
      </thead>
     <tbody>
-    <?php foreach($articles as $aricle): ?>
+    <?php foreach($articles as $article): ?>
     <tr>
-        <td> <?=  $aricle->id ?> </td>
-        <td> <?=  $aricle->publicationDate ?> </td>
-        <td> <?=  $aricle->categoryId ?> </td>
-        <td> <?=  $aricle->title ?> </td>
-        <td> <?=  $aricle->summary ?> </td>
-        <td> <?=  $aricle->content ?> </td>
-        <td> <?=  $aricle->Active ?> </td>
-        <td> <?=  $aricle->SubcategoryId ?> </td>
+        <td> <?=  $article->id ?> </td>
+        <td> <?=  $article->publicationDate ?> </td> 
+        
+        
+        
+        <td> <?php foreach($categories as $category) { 
+            if ( (int) $article->categoryId == (int) $category->id) { 
+                echo $category->name; 
+
+            } 
+        
+        }  ?> </td>
+        
+                <td> <?php  $a=1;
+                
+            foreach($categories as $category) { 
+            foreach($subcategories as $subcategory) { 
+                if ( (int) $category->id == (int) $subcategory->category_id) { 
+                    echo $subcategory->Subname; 
+                } if ($a==1) {break;}      
+            }
+                
+            
+                }?> </td>
+        
+        
+        <td> <?=  $article->title ?> </td>
+        <td> <?=  $article->summary ?> </td>
+        <td> <?=  $article->content ?> </td>
+        <td> <?=  $article->Active ?> </td>
+        <td> <?=  $article->SubcategoryId ?> </td>
     
         
         
         <td>  <?= $User->returnIfAllowed("admin/adminusers/edit", 
-                    "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminarticles/edit&id=". $aricle->id) 
+                    "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminarticles/edit&id=". $article->id) 
                     . ">[Редактировать]</a>");?></td>
        </tr>
     <?php endforeach; ?>

@@ -1,6 +1,8 @@
 <?php
 namespace application\controllers\admin;
 use \application\models\Adminarticles as Adminarticles;
+use \application\models\Admincategories as Admincategories;
+use \application\models\Adminsubcategories as Adminsubcategories;
 use ItForFree\SimpleMVC\Config;
 
 /**
@@ -15,14 +17,22 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
     
     public function indexAction()
     {
-        $Adminarticles = new Adminarticles();
-      // var_dump($Adminarticles); die();
+         $Adminarticles = new Adminarticles();
+         // var_dump($Adminarticles); die();
          $articles= $Adminarticles->getList()['results'];
          
-        //var_dump( $articles); die();
- 
+         $Adminsubcategories = new Adminsubcategories();
+         // var_dump($Adminarticles); die();
+         $subcategories = $Adminsubcategories->getList()['results'];
+         $Admincategories = new Admincategories();
+         // var_dump($Adminarticles); die();
+         $categories= $Admincategories->getList()['results']; 
+        // var_dump( $subcategories); die();
+
            
             $this->view->addVar('articles', $articles);
+            $this->view->addVar('subcategories', $subcategories);
+            $this->view->addVar('categories', $categories);
             $this->view->render('articles/index.php');
    
     }
