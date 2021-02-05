@@ -3,6 +3,7 @@ namespace application\controllers\admin;
 use \application\models\Adminarticles as Adminarticles;
 use \application\models\Admincategories as Admincategories;
 use \application\models\Adminsubcategories as Adminsubcategories;
+use \application\models\Adminusers as Adminusers;
 use ItForFree\SimpleMVC\Config;
 
 /**
@@ -28,11 +29,20 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
          // var_dump($Adminarticles); die();
          $categories= $Admincategories->getList()['results']; 
         // var_dump( $subcategories); die();
-
-           
+         $Adminusers = new Adminusers();
+         
+         
+         $users= $Adminusers->getList()['results']; 
+         
+         $Author_articles = new Adminarticles();
+         $author_articles = $Author_articles->getlist_author_articles();
+         //var_dump($author_articles); die();
+          
+            $this->view->addVar('author_articles', $author_articles);
             $this->view->addVar('articles', $articles);
             $this->view->addVar('subcategories', $subcategories);
             $this->view->addVar('categories', $categories);
+            $this->view->addVar('users', $users);
             $this->view->render('articles/index.php');
    
     }

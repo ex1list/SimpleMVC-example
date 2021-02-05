@@ -92,4 +92,17 @@ class Adminarticles extends BaseExampleModel
         $st->execute();
     }
     
+        public  function getlist_author_articles() {  
+           $array =null;     
+           $sql = "SELECT * FROM `users_articles` ";
+           $st = $this->pdo->prepare ( $sql );
+           $st->execute();
+           $array = $st->fetchAll(\PDO::FETCH_ASSOC);
+           $conn = null; 
+            // var_dump($array); die();
+            foreach ( $array as $category ) {
+               return  $array;  
+            }
+           }
+    
 }
