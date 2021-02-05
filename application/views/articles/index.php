@@ -41,17 +41,22 @@ $Articles_get = Config::getObject('core.articles.class');
         
         }  ?> </td>
         
-                <td> <?php  $a=1;
+                <td> <?php  
                 
-            foreach($categories as $category) { 
-            foreach($subcategories as $subcategory) { 
-                if ( (int) $category->id == (int) $subcategory->category_id) { 
-                    echo $subcategory->Subname; 
-                } if ($a==1) {break;}      
-            }
+         
+                 
+                    foreach($subcategories as $subcategory) { 
+                       if ((int) $article->SubcategoryId == (int) $subcategory->id) { 
+                            echo $subcategory->Subname."<BR>"; 
+                         } 
+                     } 
+               
+          
+           
+         
                 
             
-                }?> </td>
+                ?> </td>
         
         
         <td> <?=  $article->title ?> </td>
