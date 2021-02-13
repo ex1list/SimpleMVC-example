@@ -2,7 +2,7 @@
 use ItForFree\SimpleMVC\Config;
 
 $Url = Config::getObject('core.url.class');
- // var_dump($editAdminСategoryTitle); die();
+ // var_dump($subcategories); die();
  
 ?>
 
@@ -25,24 +25,30 @@ $Url = Config::getObject('core.url.class');
     <input type="textarea" name="pass" placeholder="новый пароль" value="<?= $viewAdminarticles->content ?>"><br>
     
                     <label for="categoryId">Article Category</label>
+        <!--  ["categoryId"]=> string(1) "1" -->
                 <select name="categoryId">
-                  <option value="0"<?php echo !$results['article']->categoryId ? " selected" : ""?>>(none)</option>
-                <?php foreach ( $results['categories'] as $category ) { ?>
-                  <option value="<?php echo $category->id?>"<?php echo ( $category->id == $results['article']->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
+                  <option value="0"<?php echo !$viewAdminarticles->categoryId ? " selected" : ""?>>(none)</option>
+                <?php foreach ( $categories as $category ) { ?>
+                  <option value="<?php echo $category->id?>"<?php echo ( $category->id == $viewAdminarticles->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
                 <?php } ?>
                 </select>
     
     
     <div class="form-group">   
-       <label for="SubcategoryId">Article SubCategory</label>
+
+        <!-- ["SubcategoryId"]=> string(1) "1" -->
+       
+                       <li>
+                <label for="SubcategoryId">Article SubCategory</label>
                 <select name="SubcategoryId"> 
-                <?php foreach ($results['categories'] as $category ) {  ?>
+
+                <?php foreach ($categories as $category ) {  ?>
                   <optgroup label="<?php echo htmlspecialchars($category->name) ?>">
-                    <?php foreach ($results['subcategories'] as $subcategory ) {  
+                    <?php foreach ($subcategories as $subcategory ) {  
                       if ($category->id == $subcategory->category_id) {
                     ?>
                       <option value="<?php echo $subcategory->id?>"
-                        <?php echo ( $subcategory->id == $results['article']->SubcategoryId ) 
+                        <?php echo ( $subcategory->id == $viewAdminarticles->SubcategoryId ) 
                         ? " selected" : ""?>>
                         <?php echo htmlspecialchars( $subcategory->Subname )?> 
                       </option>
@@ -50,7 +56,16 @@ $Url = Config::getObject('core.url.class');
                     }   ?>   
                   </optgroup> 
                <?php }     ?>  
+
+            
+
                 </select>
+            
+               </li>
+        
+        
+        
+        
       
     </div>
     <div class="form-group">   

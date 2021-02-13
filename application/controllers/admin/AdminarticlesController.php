@@ -23,12 +23,14 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
          $articles= $Adminarticles->getList()['results'];
          
          $Adminsubcategories = new Adminsubcategories();
-         // var_dump($Adminarticles); die();
+         
          $subcategories = $Adminsubcategories->getList()['results'];
+         
          $Admincategories = new Admincategories();
-         // var_dump($Adminarticles); die();
+         
          $categories= $Admincategories->getList()['results']; 
-        // var_dump( $subcategories); die();
+         
+       
          $Adminusers = new Adminusers();
          
          
@@ -81,7 +83,7 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
         $id = $_GET['id'];
     
         $Url = Config::get('core.url.class');
-        //var_dump($_POST); die();
+         // var_dump($_POST); die();
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
@@ -98,9 +100,27 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
             $Adminarticles = new Adminarticles();
             $viewAdminarticles = $Adminarticles->getById($id);
             //var_dump($viewAdminarticles); die();
-            
+            $Adminsubcategories = new Adminsubcategories();  
+            $subcategories = $Adminsubcategories->getList()['results'];
+            //var_dump($subcategories); die();
+            $Admincategories = new Admincategories();
+            $categories= $Admincategories->getList()['results'];
+            //var_dump($categories); die(); 
+            $Adminusers = new Adminusers(); 
+            $users= $Adminusers->getList()['results']; 
+            //var_dump($users); die(); 
+            $Author_articles = new Adminarticles();   
+            $author_articles = $Author_articles->getlist_author_articles();
+            //var_dump($author_articles); die();
+                 
+            $this->view->render('articles/index.php');   
             $editAdminArticleTitle = "Редактирование данных cтатьи";      
             $this->view->addVar('viewAdminarticles', $viewAdminarticles);
+            $this->view->addVar('subcategories', $subcategories);
+            $this->view->addVar('categories', $categories);
+            $this->view->addVar('users', $users);
+            $this->view->addVar('author_articles', $author_articles);
+            
             $this->view->addVar('editAdminArticleTitle', $editAdminArticleTitle);
             $this->view->render('articles/edit.php');   
         }
