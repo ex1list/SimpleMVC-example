@@ -16,15 +16,14 @@ $Url = Config::getObject('core.url.class');
     </span>
 </h2>
 
-<form id="editUser" method="post" action="<?= $Url::link("admin/adminusers/edit&id=" . $_GET['id'])?>">
+<form id="editUser" method="post" action="<?= $Url::link("admin/adminarticles/edit&id=" . $_GET['id'])?>">
     <h5>Введите название статьи</h5>
-    <input type="text" name="login" placeholder="логин пользователя" value="<?= $viewAdminarticles->title ?>"><br>
+    <input type="text" name="title" placeholder="title summary" value="<?= $viewAdminarticles->title ?>"><br>
  <h5>Article summary</h5>
-    <input type="text" name="pass" placeholder="новый пароль" value="<?= $viewAdminarticles->summary?>"><br>
+    <input type="text" name="summary" placeholder="articles summary" value="<?= $viewAdminarticles->summary?>"><br>
     <h5>Article content</h5>
-    <input type="textarea" name="pass" placeholder="новый пароль" value="<?= $viewAdminarticles->content ?>"><br>
-    
-                    <label for="categoryId">Article Category</label>
+    <input type="textarea" name="content" placeholder="article content" value="<?= $viewAdminarticles->content ?>"><br> 
+                <label for="categoryId">Article Category</label>
         <!--  ["categoryId"]=> string(1) "1" -->
                 <select name="categoryId">
                   <option value="0"<?php echo !$viewAdminarticles->categoryId ? " selected" : ""?>>(none)</option>
@@ -32,16 +31,11 @@ $Url = Config::getObject('core.url.class');
                   <option value="<?php echo $category->id?>"<?php echo ( $category->id == $viewAdminarticles->categoryId ) ? " selected" : ""?>><?php echo htmlspecialchars( $category->name )?></option>
                 <?php } ?>
                 </select>
-    
-    
     <div class="form-group">   
-
         <!-- ["SubcategoryId"]=> string(1) "1" -->
-       
-                       <li>
+                <li>
                 <label for="SubcategoryId">Article SubCategory</label>
                 <select name="SubcategoryId"> 
-
                 <?php foreach ($categories as $category ) {  ?>
                   <optgroup label="<?php echo htmlspecialchars($category->name) ?>">
                     <?php foreach ($subcategories as $subcategory ) {  
@@ -55,34 +49,23 @@ $Url = Config::getObject('core.url.class');
                       <?php }
                     }   ?>   
                   </optgroup> 
-               <?php }     ?>  
-
-            
-
-                </select>
-            
-               </li>
-        
-        
-        
-        
-      
+               <?php }     ?>            
+                </select>          
+               </li>  
     </div>
     <div class="form-group">   
         <label for="Author">Author</label>
-            <select name="groups[]" multiple="" size="10" >
+            <select name="groups[]"  multiple="" size="10"  >
                 <?php  foreach ($users as $user)  { ?>
                 <option value="<?php echo $user->id?>"><?php echo htmlspecialchars( $user->login)?></option>
 
         <?php } ?>
           </select>
- 
-    </div>
-        <h5>Publication date</h5>
+    </div>     
+    <h5>Publication date</h5>
     <input  type="date" name="publicationDate" id="publicationDate" placeholder="YYYY-MM-DD" required maxlength="10" value="<?php echo $viewAdminarticles->publicationDate ?  $viewAdminarticles->publicationDate : "" ?>"><br>
      <h5>Article active</h5>
-    <input type="checkbox" name="pass" placeholder="новый пароль" value="1"><br>
-    
+    <input type="checkbox" name="Active" placeholder="новый пароль" value="1"><br>   
     <input type="hidden" name="id" value="<?= $_GET['id']; ?>">
     <input type="submit" name="saveChanges" value="Сохранить">
     <input type="submit" name="cancel" value="Назад">

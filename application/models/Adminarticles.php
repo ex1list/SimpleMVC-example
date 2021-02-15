@@ -40,6 +40,9 @@ class Adminarticles extends BaseExampleModel
      */
     public $summary = null;
     
+    
+    public $groups = null;
+    
     /**
      * @var type 
      */
@@ -79,7 +82,7 @@ class Adminarticles extends BaseExampleModel
     */
     public function update()
     {       
-        $sql = "UPDATE $this->tableName SET publicationDate=:publicationDate, categoryId=:categoryId, title=:title, summary=:summary, content=:content, Active=:Active,SubcategoryId=:SubcategoryId,  WHERE id = :id";  
+        $sql = "UPDATE $this->tableName SET publicationDate=:publicationDate, categoryId=:categoryId, title=:title, summary=:summary, content=:content, Active=:Active,SubcategoryId=:SubcategoryId  WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":publicationDate", $this->publicationDate, \PDO::PARAM_STMT);
         $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_STR );
@@ -91,6 +94,39 @@ class Adminarticles extends BaseExampleModel
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();
     }
+    
+    
+        public function insert_author_articles() {             
+            $this->groups = array ();
+            $this->groups = $_POST['groups'];                  
+            //var_dump($_POST['groups']);   die(); 
+            // foreach ($_POST['groups'] as $author) { 
+            // var_dump($this->users_articles);   die();
+            //echo ($this->id);   
+            $sql = "DELETE FROM `users_articles` WHERE article_id = :article_id";
+            $st = $this->pdo->prepare ( $sql );
+            $st->bindValue( ":article_id", $this->id, \PDO::PARAM_INT );
+            $st->execute();
+            $conn = null;  
+        foreach ( $this->groups as $user_id ) {
+            $sql = "INSERT INTO users_articles(users_id, article_id) VALUES (  :user_id, :article_id)";
+            $st = $this->pdo->prepare ( $sql );
+            $st->bindValue( ":user_id", $user_id, \PDO::PARAM_INT );
+            $st->bindValue( ":article_id", $this->id, \PDO::PARAM_INT );
+            $st->execute();
+            // $this->id = $conn->lastInsertId();
+            $conn = null;
+        }
+
+     }
+     
+       
+     
+      
+  
+    
+    
+    
     
         public  function getlist_author_articles() {  
            $array =null;     

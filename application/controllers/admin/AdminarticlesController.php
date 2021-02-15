@@ -83,18 +83,26 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
         $id = $_GET['id'];
     
         $Url = Config::get('core.url.class');
-         // var_dump($_POST); die();
+         // echo "<pre>"; var_dump($_POST); echo "</pre>"; die();
         if (!empty($_POST)) { // это выполняется нормально.
-            
-            if (!empty($_POST['saveChanges'] )) {
-                $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromArray($_POST);
-                $newAdminusers->update();
-                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
+            if (!empty($_POST['saveChanges'] )) { 
+                //echo "<pre>"; var_dump($_POST); echo "</pre>";    
+                $Adminarticles = new Adminarticles();
+                //echo "<pre>"; var_dump($Adminarticles); echo "</pre>";  
+                $newAdminarticles = $Adminarticles->loadFromArray($_POST);
+                //echo "<pre>"; var_dump($newAdminarticles); echo "</pre>";  die();
+                $newAdminarticles->update();
+                $newAdminarticles->insert_author_articles();
+                //$newAdminarticles = $newAdminarticles->getById($_POST);
+                //$newAdminarticles = $Adminarticles->insert_author_articles(); 
+                //echo "<pre>"; var_dump($newAdminarticles); echo "</pre>"; die();
+                //$newAdminarticles->update();  
+                //echo "rthth";  die();
+                $this->redirect($Url::link("admin/adminarticles/index")); 
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
-            }
+                $this->redirect($Url::link("admin/adminadminarticles/index&id=$id"));
+            }        
         }
         else {
             $Adminarticles = new Adminarticles();
@@ -111,8 +119,7 @@ class AdminarticlesController extends \ItForFree\SimpleMVC\mvc\Controller
             //var_dump($users); die(); 
             $Author_articles = new Adminarticles();   
             $author_articles = $Author_articles->getlist_author_articles();
-            //var_dump($author_articles); die();
-                 
+            //var_dump($author_articles); die();               
             $this->view->render('articles/index.php');   
             $editAdminArticleTitle = "Редактирование данных cтатьи";      
             $this->view->addVar('viewAdminarticles', $viewAdminarticles);
