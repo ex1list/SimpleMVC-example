@@ -17,7 +17,7 @@
   <body>
     <div id="container">
 
-      <a href="."><img id="logo" src="/JS/logo.jpg" alt="Widget News" /></a>
+     
 
 <!-- smvc start 
 <head>
